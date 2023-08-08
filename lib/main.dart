@@ -4,33 +4,55 @@ void main() {
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const title = 'Changho App';
+    const title = 'Horizontal List';
     return MaterialApp(
       title: title,
-      color: Colors.red,
       home: Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          title: Text(title,
+          style: TextStyle(
+            color: Colors.red,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+          ),
+          backgroundColor: Colors.yellow,
+
         ),
-        body: ListView(
-          children: const <Widget>[
-            ListTile(
-              leading: Icon(Icons.map),
-              title: Text('Map'),
-            ),
-            ListTile(
-              leading: Icon(Icons.album),
-              title: Text('album'),
-            ),
-            ListTile(
-              leading: Icon(Icons.phone),
-              title: Text('phone'),
-            ),
-          ],
+        body: Container(
+          margin: const EdgeInsets.symmetric(vertical: 20),
+          height: 200,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+
+            children: <Widget>[
+              Container(
+                width: 160,
+                color: Colors.red,
+              ),
+              Container(
+                width: 160,
+                color: Colors.blue,
+              ),
+              Container(
+                width: 160,
+                color: Colors.orange,
+              ),
+              Container(
+                width: 160,
+                color: Colors.green,
+              ),
+              Container(
+                width: 160,
+                color: Colors.grey,
+              ),
+
+            ],
+          ),
         ),
       ),
     );
