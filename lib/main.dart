@@ -8,52 +8,34 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const title = 'Horizontal List';
+    const title = 'Grid List';
     return MaterialApp(
       title: title,
       home: Scaffold(
         appBar: AppBar(
           title: Text(title,
           style: TextStyle(
-            color: Colors.red,
+            color: Colors.white12,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
           ),
-          backgroundColor: Colors.yellow,
+          backgroundColor: Colors.green[400],
 
         ),
-        body: Container(
-          margin: const EdgeInsets.symmetric(vertical: 20),
-          height: 200,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
+        body: GridView.count(
+            crossAxisCount: 2,
+                children:List.generate(100, (index){
+                    return Center(
+                      child: Text(
+                        'Item $index',
+                        style: Theme.of(context).textTheme.headlineSmall,
+                      ),
+                    );
+        }),
 
-            children: <Widget>[
-              Container(
-                width: 160,
-                color: Colors.red,
-              ),
-              Container(
-                width: 160,
-                color: Colors.blue,
-              ),
-              Container(
-                width: 160,
-                color: Colors.orange,
-              ),
-              Container(
-                width: 160,
-                color: Colors.green,
-              ),
-              Container(
-                width: 160,
-                color: Colors.grey,
-              ),
+        )
 
-            ],
-          ),
-        ),
       ),
     );
   }
