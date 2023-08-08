@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tuto_2/ListItem.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp( MyApp(
+    items: List<ListItem>.generate(1000, (index) => index%6==0
+    ?HeadingItem('Heading$index')
+    :MessageItem('Sender$index', 'MessageBody $index')),
+  ));
 }
 class MyApp extends StatelessWidget {
-   const MyApp({Key? key}) : super(key: key);
+  final List<ListItem> items;
+   const MyApp({super.key, required this.items});
 
   @override
   Widget build(BuildContext context) {
-    const title = 'Grid List';
+    const title = 'Mixed List';
     return MaterialApp(
       title: title,
       home: Scaffold(
@@ -23,20 +29,17 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.green[400],
 
         ),
-        body: GridView.count(
-            crossAxisCount: 2,
-                children:List.generate(100, (index){
-                    return Center(
-                      child: Text(
-                        'Item $index',
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                    );
-        }),
-
-        )
-
+        body: ListView.builder(
+            itemCount: items.length,
+            itemBuilder: (context, index){
+              final item = items[index];
+              return ListTile(
+                title: item.buildTitle(context),
+                subtitle: item.buildSubtitle(context),
+              );
+            })
       ),
     );
   }
 }
+
